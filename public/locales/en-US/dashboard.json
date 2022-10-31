@@ -1,5 +1,5 @@
 {
-  "errors":{
+  "errors": {
     "40036": "Default storage policy cannot be deleted.",
     "40037": "{{message}} file(s) are using this policy, please delete those files first.",
     "40038": "{{message}} group(s) are using this policy, please unlink those groups first.",
@@ -505,7 +505,7 @@
     "accessKey": "AccessKey",
     "chunkSizeLabelS3": "Specify the chunk size for resumable uploads. Allowed range is 5 MB - 5 GB.",
     "editPolicy": "Edit storage policy",
-    "setting":"Setting name",
+    "setting": "Setting name",
     "value": "Value",
     "description": "Description",
     "id": "ID",
@@ -533,7 +533,10 @@
     "upyunToken": "Upyun anti-hotlinking token",
     "upyunOnly": "Available only for Upyun policy.",
     "allowedFileExtension": "Allowed file extensions",
-    "emptyIsNoLimit": "Blank means not limit.",
+    "forbiddenFileExtension": "Forbidden file extensions",
+    "emptyIsNoLimit": "Blank means not limit:jpg,png",
+    "importTaskCron": "Import Task Cron",
+    "importTaskCronDesc": "Import task is cron, the expression.",
     "allowedMimetype": "Allowed MimeType",
     "qiniuOnly": "Available only for Qiniu policy.",
     "odRedirectURL": "OneDrive redirect URL",
@@ -727,7 +730,8 @@
     "dstFolderPathDes": "Path in the user's file system to hold all imported files.",
     "recursivelyImport": "Recursively import",
     "recursivelyImportDes": "Whether to import all subdirectories under the directory recursively.",
-    "createImportTask": "Create import task"
+    "createImportTask": "Create import task",
+    "importTaskIsCron": "Import task is cron"
   },
   "share": {
     "deleted": "Share deleted.",
@@ -740,7 +744,7 @@
     "createdAt": "Created at",
     "public": "Public",
     "private": "Private",
-    "afterNDownloads":"After {{num}} download(s).",
+    "afterNDownloads": "After {{num}} download(s).",
     "none": "None",
     "srcType": "Source object type",
     "folder": "Folder",

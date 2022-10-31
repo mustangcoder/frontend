@@ -175,6 +175,7 @@ export default function Node() {
         features.map((feature) => {
             if (node[feature.field]) {
                 return (
+                    // eslint-disable-next-line react/jsx-key
                     <Chip
                         className={classes.disabledBadge}
                         size="small"

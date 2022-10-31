@@ -1,5 +1,5 @@
 {
-  "errors":{
+  "errors": {
     "40036": "默认存储策略无法删除",
     "40037": "有 {{message}} 个文件仍在使用此存储策略，请先删除这些文件",
     "40038": "有 {{message}} 个用户组绑定了此存储策略，请先解除绑定",
@@ -505,7 +505,7 @@
     "accessKey": "AccessKey",
     "chunkSizeLabelS3": "请指定分片上传时的分片大小，范围 5 MB ~ 5 GB。",
     "editPolicy": "编辑存储策略",
-    "setting":"设置项",
+    "setting": "设置项",
     "value": "值",
     "description": "描述",
     "id": "ID",
@@ -533,7 +533,10 @@
     "upyunToken": "又拍云防盗链 Token",
     "upyunOnly": "仅对又拍云存储策略有效",
     "allowedFileExtension": "允许文件扩展名",
-    "emptyIsNoLimit": "留空表示不限制",
+    "forbiddenFileExtension": "禁止文件扩展名",
+    "emptyIsNoLimit": "留空表示不限制:jpg,png",
+    "importTaskCron": "导入文件任务cron表达式",
+    "importTaskCronDesc": "导入文件任务为定时执行时，cron表达式",
     "allowedMimetype": "允许的 MimeType",
     "qiniuOnly": "仅对七牛存储策略有效",
     "odRedirectURL": "OneDrive 重定向地址",
@@ -727,7 +730,8 @@
     "dstFolderPathDes": "要将目录导入到用户文件系统中的路径",
     "recursivelyImport": "递归导入子目录",
     "recursivelyImportDes": "是否将目录下的所有子目录递归导入",
-    "createImportTask": "创建导入任务"
+    "createImportTask": "创建导入任务",
+    "importTaskIsCron": "导入任务是否定时执行"
   },
   "share": {
     "deleted": "分享已删除",
@@ -740,7 +744,7 @@
     "createdAt": "分享于",
     "public": "公开",
     "private": "私密",
-    "afterNDownloads":"{{num}} 次下载后",
+    "afterNDownloads": "{{num}} 次下载后",
     "none": "无",
     "srcType": "源文件类型",
     "folder": "目录",

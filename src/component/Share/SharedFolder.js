@@ -115,6 +115,7 @@ class SharedFolderComponent extends Component {
                         !readmeShowed
                     ) {
                         readmeShowed = true;
+                        // eslint-disable-next-line react/jsx-key
                         return <ReadMe share={this.props.share} file={value} />;
                     }
                 })}

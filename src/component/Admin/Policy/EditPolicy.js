@@ -1,9 +1,9 @@
 import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles";
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router";
-import { toggleSnackbar } from "../../../redux/explorer";
+import {makeStyles} from "@material-ui/core/styles";
+import React, {useCallback, useEffect, useState} from "react";
+import {useDispatch} from "react-redux";
+import {useParams} from "react-router";
+import {toggleSnackbar} from "../../../redux/explorer";
 import API from "../../../middleware/Api";
 import COSGuide from "./Guid/COSGuide";
 import EditPro from "./Guid/EditPro";
@@ -32,7 +32,7 @@ export default function EditPolicyPreload() {
     const [type, setType] = useState("");
     const [policy, setPolicy] = useState({});
 
-    const { mode, id } = useParams();
+    const {mode, id} = useParams();
 
     const dispatch = useDispatch();
     const ToggleSnackbar = useCallback(
@@ -70,6 +70,10 @@ export default function EditPolicyPreload() {
                     .OptionsSerialized.file_type
                     ? response.data.OptionsSerialized.file_type.join(",")
                     : "";
+                response.data.OptionsSerialized.forbidden_file_type = response.data
+                    .OptionsSerialized.forbidden_file_type
+                    ? response.data.OptionsSerialized.forbidden_file_type.join(",")
+                    : "";
                 response.data.OptionsSerialized.tps_limit = response.data
                     .OptionsSerialized.tps_limit
                     ? response.data.OptionsSerialized.tps_limit.toString()
@@ -91,20 +95,20 @@ export default function EditPolicyPreload() {
             <Paper square className={classes.content}>
                 {mode === "guide" && (
                     <>
-                        {type === "local" && <LocalGuide policy={policy} />}
-                        {type === "remote" && <RemoteGuide policy={policy} />}
-                        {type === "qiniu" && <QiniuGuide policy={policy} />}
-                        {type === "oss" && <OSSGuide policy={policy} />}
-                        {type === "upyun" && <UpyunGuide policy={policy} />}
-                        {type === "cos" && <COSGuide policy={policy} />}
+                        {type === "local" && <LocalGuide policy={policy}/>}
+                        {type === "remote" && <RemoteGuide policy={policy}/>}
+                        {type === "qiniu" && <QiniuGuide policy={policy}/>}
+                        {type === "oss" && <OSSGuide policy={policy}/>}
+                        {type === "upyun" && <UpyunGuide policy={policy}/>}
+                        {type === "cos" && <COSGuide policy={policy}/>}
                         {type === "onedrive" && (
-                            <OneDriveGuide policy={policy} />
+                            <OneDriveGuide policy={policy}/>
                         )}
-                        {type === "s3" && <S3Guide policy={policy} />}
+                        {type === "s3" && <S3Guide policy={policy}/>}
                     </>
                 )}
 
-                {mode === "pro" && type !== "" && <EditPro policy={policy} />}
+                {mode === "pro" && type !== "" && <EditPro policy={policy}/>}
             </Paper>
         </div>
     );

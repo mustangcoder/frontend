@@ -79,6 +79,16 @@ export default function EditPro(props) {
         ) {
             policyCopy.OptionsSerialized.file_type = [];
         }
+        policyCopy.OptionsSerialized.forbidden_file_type = policyCopy.OptionsSerialized.forbidden_file_type.split(
+            ","
+        );
+        if (
+            policyCopy.OptionsSerialized.forbidden_file_type.length === 1 &&
+            policyCopy.OptionsSerialized.forbidden_file_type[0] === ""
+        ) {
+            policyCopy.OptionsSerialized.forbidden_file_type = [];
+        }
+
 
         API.post("/admin/policy", {
             policy: policyCopy,
@@ -411,6 +421,45 @@ export default function EditPro(props) {
                                 </TableCell>
                                 <TableCell>{t("emptyIsNoLimit")}</TableCell>
                             </TableRow>
+                            <TableRow>
+                                <TableCell component="th" scope="row">
+                                    {t("forbiddenFileExtension")}
+                                </TableCell>
+                                <TableCell>
+                                    <FormControl>
+                                        <Input
+                                            multiline
+                                            value={
+                                                policy.OptionsSerialized
+                                                    .forbidden_file_type
+                                            }
+                                            onChange={handleOptionChange(
+                                                "forbidden_file_type"
+                                            )}
+                                        />
+                                    </FormControl>
+                                </TableCell>
+                                <TableCell>{t("emptyIsNoLimit")}</TableCell>
+                            </TableRow>
+                            {/*<TableRow>*/}
+                            {/*    <TableCell component="th" scope="row">*/}
+                            {/*        {t("importTaskCron")}*/}
+                            {/*    </TableCell>*/}
+                            {/*    <TableCell>*/}
+                            {/*        <FormControl>*/}
+                            {/*            <Input*/}
+                            {/*                multiline*/}
+                            {/*                value={*/}
+                            {/*                    policy.OptionsSerialized.import_task_cron*/}
+                            {/*                }*/}
+                            {/*                onChange={handleOptionChange(*/}
+                            {/*                    "import_task_cron"*/}
+                            {/*                )}*/}
+                            {/*            />*/}
+                            {/*        </FormControl>*/}
+                            {/*    </TableCell>*/}
+                            {/*    <TableCell>{t("importTaskCronDesc")}</TableCell>*/}
+                            {/*</TableRow>*/}
                             <TableRow>
                                 <TableCell component="th" scope="row">
                                     {t("allowedMimetype")}

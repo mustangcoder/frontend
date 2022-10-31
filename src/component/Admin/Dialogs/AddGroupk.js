@@ -116,6 +116,7 @@ export default function AddGroup({ open, onClose, onSubmit }) {
                                     {groups.map((v) => {
                                         if (v.ID !== 3) {
                                             return (
+                                                // eslint-disable-next-line react/jsx-key
                                                 <MenuItem value={v.ID}>
                                                     {v.Name}
                                                 </MenuItem>

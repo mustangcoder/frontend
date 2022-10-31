@@ -10,18 +10,18 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Stepper from "@material-ui/core/Stepper";
-import { lighten, makeStyles } from "@material-ui/core/styles";
+import {lighten, makeStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import React, { useCallback, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
-import { toggleSnackbar } from "../../../../redux/explorer";
+import React, {useCallback, useState} from "react";
+import {useDispatch} from "react-redux";
+import {useHistory} from "react-router";
+import {toggleSnackbar} from "../../../../redux/explorer";
 import API from "../../../../middleware/Api";
 import DomainInput from "../../Common/DomainInput";
 import SizeInput from "../../Common/SizeInput";
 import MagicVar from "../../Dialogs/MagicVar";
-import { getNumber } from "../../../../utils";
-import { Trans, useTranslation } from "react-i18next";
+import {getNumber} from "../../../../utils";
+import {Trans, useTranslation} from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
     stepContent: {
@@ -87,7 +87,7 @@ const steps = [
 ];
 
 export default function LocalGuide(props) {
-    const { t } = useTranslation("dashboard", { keyPrefix: "policy" });
+    const {t} = useTranslation("dashboard", {keyPrefix: "policy"});
     const classes = useStyles();
     const history = useHistory();
 
@@ -100,20 +100,20 @@ export default function LocalGuide(props) {
         props.policy
             ? props.policy
             : {
-                  Type: "local",
-                  Name: "",
-                  DirNameRule: "uploads/{uid}/{path}",
-                  AutoRename: "true",
-                  FileNameRule: "{randomkey8}_{originname}",
-                  IsOriginLinkEnable: "false",
-                  BaseURL: "",
-                  IsPrivate: "true",
-                  MaxSize: "0",
-                  OptionsSerialized: {
-                      file_type: "",
-                      chunk_size: 25 << 20,
-                  },
-              }
+                Type: "local",
+                Name: "",
+                DirNameRule: "uploads/{uid}/{path}",
+                AutoRename: "true",
+                FileNameRule: "{randomkey8}_{originname}",
+                IsOriginLinkEnable: "false",
+                BaseURL: "",
+                IsPrivate: "true",
+                MaxSize: "0",
+                OptionsSerialized: {
+                    file_type: "",
+                    chunk_size: 25 << 20,
+                },
+            }
     );
 
     const handleChange = (name) => (event) => {
@@ -167,8 +167,8 @@ export default function LocalGuide(props) {
         e.preventDefault();
         setLoading(true);
 
-        const policyCopy = { ...policy };
-        policyCopy.OptionsSerialized = { ...policyCopy.OptionsSerialized };
+        const policyCopy = {...policy};
+        policyCopy.OptionsSerialized = {...policyCopy.OptionsSerialized};
 
         // 处理存储策略
         if (useCDN === "false" || policy.IsOriginLinkEnable === "false") {
@@ -194,6 +194,15 @@ export default function LocalGuide(props) {
             policyCopy.OptionsSerialized.file_type[0] === ""
         ) {
             policyCopy.OptionsSerialized.file_type = [];
+        }
+        policyCopy.OptionsSerialized.forbidden_file_type = policyCopy.OptionsSerialized.forbidden_file_type.split(
+            ","
+        );
+        if (
+            policyCopy.OptionsSerialized.forbidden_file_type.length === 1 &&
+            policyCopy.OptionsSerialized.forbidden_file_type[0] === ""
+        ) {
+            policyCopy.OptionsSerialized.forbidden_file_type = [];
         }
 
         API.post("/admin/policy", {
@@ -318,14 +327,14 @@ export default function LocalGuide(props) {
                                         <FormControlLabel
                                             value={"true"}
                                             control={
-                                                <Radio color={"primary"} />
+                                                <Radio color={"primary"}/>
                                             }
                                             label={t("autoRenameStoredFile")}
                                         />
                                         <FormControlLabel
                                             value={"false"}
                                             control={
-                                                <Radio color={"primary"} />
+                                                <Radio color={"primary"}/>
                                             }
                                             label={t("keepOriginalFileName")}
                                         />
@@ -382,7 +391,7 @@ export default function LocalGuide(props) {
                         <div className={classes.subStepContent}>
                             <Typography variant={"body2"}>
                                 {t("enableGettingPermanentSourceLink")}
-                                <br />
+                                <br/>
                                 {t("enableGettingPermanentSourceLinkDes")}
                             </Typography>
 
@@ -399,14 +408,14 @@ export default function LocalGuide(props) {
                                         <FormControlLabel
                                             value={"true"}
                                             control={
-                                                <Radio color={"primary"} />
+                                                <Radio color={"primary"}/>
                                             }
                                             label={t("allowed")}
                                         />
                                         <FormControlLabel
                                             value={"false"}
                                             control={
-                                                <Radio color={"primary"} />
+                                                <Radio color={"primary"}/>
                                             }
                                             label={t("forbidden")}
                                         />
@@ -424,7 +433,7 @@ export default function LocalGuide(props) {
                             <div className={classes.subStepContent}>
                                 <Typography variant={"body2"}>
                                     {t("useCDN")}
-                                    <br />
+                                    <br/>
                                     {t("useCDNDes")}
                                 </Typography>
 
@@ -449,14 +458,14 @@ export default function LocalGuide(props) {
                                             <FormControlLabel
                                                 value={"true"}
                                                 control={
-                                                    <Radio color={"primary"} />
+                                                    <Radio color={"primary"}/>
                                                 }
                                                 label={t("use")}
                                             />
                                             <FormControlLabel
                                                 value={"false"}
                                                 control={
-                                                    <Radio color={"primary"} />
+                                                    <Radio color={"primary"}/>
                                                 }
                                                 label={t("notUse")}
                                             />
@@ -482,7 +491,7 @@ export default function LocalGuide(props) {
                                             onChange={handleChange("BaseURL")}
                                             required={
                                                 policy.IsOriginLinkEnable ===
-                                                    "true" && useCDN === "true"
+                                                "true" && useCDN === "true"
                                             }
                                             label={t("cdnPrefix")}
                                         />
@@ -556,14 +565,14 @@ export default function LocalGuide(props) {
                                         <FormControlLabel
                                             value={"true"}
                                             control={
-                                                <Radio color={"primary"} />
+                                                <Radio color={"primary"}/>
                                             }
                                             label={t("limit")}
                                         />
                                         <FormControlLabel
                                             value={"false"}
                                             control={
-                                                <Radio color={"primary"} />
+                                                <Radio color={"primary"}/>
                                             }
                                             label={t("notLimit")}
                                         />
@@ -641,14 +650,14 @@ export default function LocalGuide(props) {
                                         <FormControlLabel
                                             value={"true"}
                                             control={
-                                                <Radio color={"primary"} />
+                                                <Radio color={"primary"}/>
                                             }
                                             label={t("limit")}
                                         />
                                         <FormControlLabel
                                             value={"false"}
                                             control={
-                                                <Radio color={"primary"} />
+                                                <Radio color={"primary"}/>
                                             }
                                             label={t("notLimit")}
                                         />
@@ -701,7 +710,7 @@ export default function LocalGuide(props) {
                         <div className={classes.subStepContent}>
                             <Typography variant={"body2"}>
                                 {t("chunkSizeLabel")}
-                                <br />
+                                <br/>
                                 {t("chunkSizeDes")}
                             </Typography>
                             <div className={classes.form}>
@@ -739,7 +748,7 @@ export default function LocalGuide(props) {
             {activeStep === 3 && (
                 <form className={classes.stepContent} onSubmit={submitPolicy}>
                     <div className={classes.subStepContainer}>
-                        <div className={classes.stepNumberContainer} />
+                        <div className={classes.stepNumberContainer}/>
                         <div className={classes.subStepContent}>
                             <Typography variant={"body2"}>
                                 {t("nameThePolicy")}

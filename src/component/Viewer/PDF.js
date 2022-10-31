@@ -100,6 +100,7 @@ export default function PDFViewer() {
                 }
             >
                 {Array.from(new Array(pageNumber), (el, index) => (
+                    // eslint-disable-next-line react/jsx-key
                     <Paper className={classes.paper} elevation={1}>
                         <Page
                             width={900}

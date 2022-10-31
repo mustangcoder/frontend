@@ -1,4 +1,4 @@
-import { Dialog } from "@material-ui/core";
+import {Dialog} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Chip from "@material-ui/core/Chip";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -14,17 +14,17 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import Select from "@material-ui/core/Select";
-import { makeStyles } from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
 import Typography from "@material-ui/core/Typography";
 import Alert from "@material-ui/lab/Alert";
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
-import { toggleSnackbar } from "../../../redux/explorer";
+import React, {useCallback, useEffect, useState} from "react";
+import {useDispatch} from "react-redux";
+import {useHistory} from "react-router";
+import {toggleSnackbar} from "../../../redux/explorer";
 import API from "../../../middleware/Api";
 import PathSelector from "../../FileManager/PathSelector";
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -65,8 +65,8 @@ function useDebounce(value, delay) {
 }
 
 export default function Import() {
-    const { t } = useTranslation("dashboard", { keyPrefix: "file" });
-    const { t: tCommon } = useTranslation("common");
+    const {t} = useTranslation("dashboard", {keyPrefix: "file"});
+    const {t: tCommon} = useTranslation("common");
     const classes = useStyles();
     const [loading, setLoading] = useState(false);
     const [options, setOptions] = useState({
@@ -75,6 +75,7 @@ export default function Import() {
         src: "",
         dst: "",
         recursive: true,
+        isCron: false,
     });
     const [anchorEl, setAnchorEl] = useState(null);
     const [policies, setPolicies] = useState({});
@@ -118,6 +119,7 @@ export default function Import() {
             src: options.src,
             dst: options.dst,
             recursive: options.recursive,
+            isCron: options.isCron,
         })
             .then(() => {
                 setLoading(false);
@@ -307,7 +309,7 @@ export default function Import() {
                                     id="demo-mutiple-chip"
                                     value={options.policy}
                                     onChange={handleChange("policy")}
-                                    input={<Input id="select-multiple-chip" />}
+                                    input={<Input id="select-multiple-chip"/>}
                                 >
                                     {Object.keys(policies).map((pid) => (
                                         <MenuItem key={pid} value={pid}>
@@ -355,7 +357,7 @@ export default function Import() {
                                     placement={"bottom"}
                                     transition
                                 >
-                                    {({ TransitionProps }) => (
+                                    {({TransitionProps}) => (
                                         <Fade
                                             {...TransitionProps}
                                             timeout={350}
@@ -460,6 +462,19 @@ export default function Import() {
                                 <FormHelperText id="component-helper-text">
                                     {t("recursivelyImportDes")}
                                 </FormHelperText>
+                            </FormControl>
+                            <FormControl fullWidth>
+                                <FormControlLabel
+                                    control={
+                                        <Switch
+                                            checked={options.isCron}
+                                            onChange={handleCheckChange(
+                                                "isCron"
+                                            )}
+                                        />
+                                    }
+                                    label={t("importTaskIsCron")}
+                                />
                             </FormControl>
                         </div>
                     </div>

@@ -138,6 +138,7 @@ export default function MagicVar({ isFile, open, onClose, isSlave }) {
                             {magicVars.map((m) => {
                                 if (!m.fileOnly || isFile) {
                                     return (
+                                        // eslint-disable-next-line react/jsx-key
                                         <TableRow>
                                             <TableCell
                                                 component="th"
